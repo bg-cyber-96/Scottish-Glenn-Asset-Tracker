@@ -156,6 +156,44 @@ namespace Scottish_Glen_Asset_Tracking
             }
         }
 
+        public int UpdateEmployee(Employee employee)
+        {
+            using (SqlConnection connection =
+                new SqlConnection(connectionString))
+            {
+                string query = @"
+            UPDATE Employees
+            SET FirstName = @FirstName,
+                LastName = @LastName,
+                Email = @Email,
+                DepartmentID = @DepartmentID
+            WHERE EmployeeID = @EmployeeID;";
+
+                using (SqlCommand command =
+                    new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue(
+                        "@FirstName", employee.FirstName);
+
+                    command.Parameters.AddWithValue(
+                        "@LastName", employee.LastName);
+
+                    command.Parameters.AddWithValue(
+                        "@Email", employee.Email);
+
+                    command.Parameters.AddWithValue(
+                        "@DepartmentID", employee.DepartmentID);
+
+                    command.Parameters.AddWithValue(
+                        "@EmployeeID", employee.EmployeeID);
+
+                    connection.Open();
+
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public int DeleteEmployee(int employeeID)
         {
             using (SqlConnection connection =
