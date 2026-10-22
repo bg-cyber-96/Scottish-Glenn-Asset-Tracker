@@ -16,33 +16,18 @@ namespace Scottish_Glen_Asset_Tracking
         {
             InitializeComponent();
 
-            LoadDashboardData();
+            AssetsView assetsView = new AssetsView();
+
+            ShowView(new AssetsView());
+
+            assetsView.Dock = DockStyle.Fill;
         }
 
-        private void LoadDashboardData()
+        private void ShowView(UserControl view)
         {
-            try
-            {
-                AssetDataAccess dataAccess = new AssetDataAccess();
-
-                // Update the summary cards
-                lblTotalAssetsCount.Text =
-                    dataAccess.GetAssetCount().ToString();
-
-                lblTotalEmployeesCount.Text =
-                    dataAccess.GetEmployeeCount().ToString();
-
-                // Load the asset records into the table
-                dgvAssets.DataSource = dataAccess.GetAssets();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Unalbe to load dashboard data. \n\n" + ex.Message,
-                    "Dashboard Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error );
-            }
+            pnlMainContent.Controls.Clear();
+            view.Dock = DockStyle.Fill;
+            pnlMainContent.Controls.Add(view);
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -63,6 +48,16 @@ namespace Scottish_Glen_Asset_Tracking
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAssets_Click(object sender, EventArgs e)
+        {
+            ShowView(new AssetsView());
+        }
+
+        private void btnEmployees_click(object sender, EventArgs e)
+        {
+            ShowView(new EmployeesView());
         }
     }
 }
