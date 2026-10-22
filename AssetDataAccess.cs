@@ -95,5 +95,39 @@ namespace Scottish_Glen_Asset_Tracking
 
             return assets;
         }
+
+        public int GetAssetCount()
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM dbo.Assets;";
+
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    return (int)command.ExecuteScalar();
+                }
+            }
+        }
+
+        public int GetEmployeeCount()
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM dbo.Employees;";
+
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    return (int)command.ExecuteScalar();
+                }
+            }
+        }
     }
 }
