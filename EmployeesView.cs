@@ -18,7 +18,7 @@ namespace Scottish_Glen_Asset_Tracking
 
             LoadEmployeeSummary();
             LoadDepartments();
-            LoadEmployes();
+            LoadEmployees();
 
             Dock = DockStyle.Fill;
             BackColor = System.Drawing.Color.White;
@@ -48,7 +48,7 @@ namespace Scottish_Glen_Asset_Tracking
             }
         }
 
-        private void LoadEmployes()
+        private void LoadEmployees()
         {
             try
             {
@@ -113,9 +113,98 @@ namespace Scottish_Glen_Asset_Tracking
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
+            if (dgvEmployees.CurrentRow == null)
+            {
+                MessageBox.Show(
+                    "Please select an employee from the table first.",
+                    "No Employee Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
+                return;
+            }
+
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string email = txtEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(firstName) ||
+                string.IsNullOrWhiteSpace(lastName) ||
+                string.IsNullOrWhiteSpace(email) ||
+                cmbDepartment.SelectedValue == null)
+            {
+                MessageBox.Show(
+                    "Please complete all fields and select a department.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                email,
+                @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show(
+                    "Please enter a valid email address.",
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            try
+            {
+                int employeeID = Convert.ToInt32(
+                    dgvEmployees.CurrentRow.Cells["EmployeeID"].Value);
+
+                Employee employee = new Employee
+                {
+                    EmployeeID = employeeID,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Email = email,
+                    DepartmentID = Convert.ToInt32(
+                        cmbDepartment.SelectedValue)
+                };
+
+                AssetDataAccess dataAccess = new AssetDataAccess();
+
+                int rowsAffected = dataAccess.UpdateEmployee(employee);
+
+                if (rowsAffected > 0)
+                {
+                    LoadEmployees();
+                    LoadEmployeeSummary();
+                    ClearEmployeeFields();
+
+                    MessageBox.Show(
+                        "Employee updated successfully.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "The employee record was not updated.",
+                        "Update Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Unable to update employee.\n\n" + ex.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnAddEmployee_Click(object sender, EventArgs e)
@@ -165,7 +254,7 @@ namespace Scottish_Glen_Asset_Tracking
 
                 dataAccess.AddEmployee(employee);
 
-                LoadEmployes();
+                LoadEmployees();
                 LoadEmployeeSummary();
                 ClearEmployeeFields();
 
@@ -193,6 +282,23 @@ namespace Scottish_Glen_Asset_Tracking
         private void btnClearEmployee_Click(object sender, EventArgs e)
         {
             ClearEmployeeFields();
+        }
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
+
+            txtFirstName.Text = row.Cells["FirstName"].Value?.ToString();
+            txtLastName.Text = row.Cells["LastName"].Value?.ToString();
+            txtEmail.Text = row.Cells["Email"].Value?.ToString();
+
+            cmbDepartment.SelectedValue =
+                Convert.ToInt32(row.Cells["DepartmentID"].Value);
         }
     }
 }
