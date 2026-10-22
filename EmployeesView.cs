@@ -276,7 +276,75 @@ namespace Scottish_Glen_Asset_Tracking
 
         private void btnDeleteEmployee_Click(object sender, EventArgs e)
         {
+            if (dgvEmployees.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Please select an employee from the table first.",
+                    "No Employee Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
+                return;
+            }
+
+            DataGridViewRow selectedRow = dgvEmployees.SelectedRows[0];
+
+            int employeeID = Convert.ToInt32(
+                selectedRow.Cells["EmployeeID"].Value);
+
+            string firstName =
+                selectedRow.Cells["FirstName"].Value.ToString();
+
+            string lastName =
+                selectedRow.Cells["LastName"].Value.ToString();
+
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to delete {firstName} {lastName}?",
+                "Confirm Employee Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                AssetDataAccess dataAccess = new AssetDataAccess();
+
+                int rowsAffected = dataAccess.DeleteEmployee(employeeID);
+
+                if (rowsAffected > 0)
+                {
+                    LoadEmployees();
+                    LoadEmployeeSummary();
+                    ClearEmployeeFields();
+
+                    MessageBox.Show(
+                        "Employee deleted successfully.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "The employee record was not deleted.",
+                        "Delete Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Unable to delete employee. They may still have assets assigned to them.\n\n"
+                    + ex.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnClearEmployee_Click(object sender, EventArgs e)
