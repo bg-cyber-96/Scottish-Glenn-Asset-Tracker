@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asset.cs" />
     <Compile Include="AssetDataAccess.cs" />
     <Compile Include="AssetsView.cs">
       <SubType>UserControl</SubType>
