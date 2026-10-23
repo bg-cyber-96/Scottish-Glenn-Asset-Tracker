@@ -215,5 +215,130 @@ namespace Scottish_Glen_Asset_Tracking
                 }
             }
         }
+
+        public int AddAsset(Asset asset)
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(connectionString))
+            {
+                string query = @"
+                    INSERT INTO dbo.Assets
+                        (SystemName, Model, Manufacturer, AssetType,
+                         IPAddress, PurchaseDate, Notes, EmployeeID)
+                    VALUES
+                        (@SystemNam, @Model, @Manufacturer, @AssetType,
+                         @IPAddress, @PurchaseDate, @Notes, @EmployeeID);
+
+                    SELECT CAST (SCOPE_IDENTITY() AS INT);";
+
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue(
+                        "@SystemName", asset.SystemName);
+
+                    command.Parameters.AddWithValue(
+                        "@Model", (object)asset.Model ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@Manufacturer", (object)asset.Manufacturer ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@AssetType", asset.AssetType);
+
+                    command.Parameters.AddWithValue(
+                        "@IPAddress", (object)asset.IPAddress ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@PurchaseDate", asset.PurchaseDate.Date);
+
+                    command.Parameters.AddWithValue(
+                        "@Notes", (object)asset.Notes ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@EmployeeID", asset.EmployeeID);
+
+                    connection.Open();
+
+                    return (int)command.ExecuteScalar();
+                }
+            }
+        }
+
+        public int UpdateAsset(Asset asset)
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(connectionString))
+            {
+                string query = @"
+                    UPDATE dbo.Assets
+                    SET SystemName = @SystemName,
+                    Model = @Model,
+                    Manufacturer = @Manufacturer,
+                    AssetType = @AssetType,
+                    IPAddress = @IPAddress,
+                    PurchaseDate = @PurchaseDate,
+                    Notes = @Notes,
+                    EmployeeID = @EmployeeID
+                    WHERE AssetID = @AssetID;";
+
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue(
+                        "@SystemName", asset.SystemName);
+
+                    command.Parameters.AddWithValue(
+                        "@Model", (object)asset.Model ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@Manufacturer", (object)asset.Manufacturer ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@AssetType", asset.AssetType);
+
+                    command.Parameters.AddWithValue(
+                        "@IPAddress", (object)asset.IPAddress ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@PurchaseDate", asset.PurchaseDate.Date);
+
+                    command.Parameters.AddWithValue(
+                        "@Notes", (object)asset.Notes ?? DBNull.Value);
+
+                    command.Parameters.AddWithValue(
+                        "@EmployeeID", asset.EmployeeID);
+
+                    command.Parameters.AddWithValue(
+                        "@AssetID", asset.AssetID);
+
+                    connection.Open();
+
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int DeleteAsset(int assetID)
+        {
+            using (SqlConnection connection =
+                   new SqlConnection(connectionString))
+            {
+                string query = @"
+                    DELETE FROM dbo.Assets
+                    WHERE AssetID = @AssetID;";
+
+                using (SqlCommand command =
+                       new SqlCommand(query, connection))
+                {
+                    command.Parameters.Add(
+                        "@AssetID", SqlDbType.Int).Value = assetID;
+
+                    connection.Open();
+
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
