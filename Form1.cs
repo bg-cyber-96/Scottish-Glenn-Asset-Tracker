@@ -59,5 +59,7 @@ namespace Scottish_Glen_Asset_Tracking
         {
             ShowView(new EmployeesView());
         }
+
     }
+  
 }
