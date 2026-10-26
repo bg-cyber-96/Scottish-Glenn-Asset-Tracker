@@ -153,6 +153,7 @@
             this.dgvAssets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAssets.Size = new System.Drawing.Size(1057, 100);
             this.dgvAssets.TabIndex = 9;
+            this.dgvAssets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssets_CellClick);
             // 
             // pnlTotalEmployees
             // 
@@ -367,6 +368,7 @@
             this.btnUpdateAsset.TabIndex = 16;
             this.btnUpdateAsset.Text = "Update";
             this.btnUpdateAsset.UseVisualStyleBackColor = true;
+            this.btnUpdateAsset.Click += new System.EventHandler(this.btnUpdateAsset_Click);
             // 
             // btnDeleteAsset
             // 
@@ -377,6 +379,7 @@
             this.btnDeleteAsset.TabIndex = 17;
             this.btnDeleteAsset.Text = "Delete";
             this.btnDeleteAsset.UseVisualStyleBackColor = true;
+            this.btnDeleteAsset.Click += new System.EventHandler(this.btnDeleteAsset_Click);
             // 
             // btnClearAsset
             // 
@@ -387,6 +390,7 @@
             this.btnClearAsset.TabIndex = 18;
             this.btnClearAsset.Text = "Clear";
             this.btnClearAsset.UseVisualStyleBackColor = true;
+            this.btnClearAsset.Click += new System.EventHandler(this.btnClearAsset_Click);
             // 
             // lblPurchaseDate
             // 
