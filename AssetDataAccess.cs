@@ -226,7 +226,7 @@ namespace Scottish_Glen_Asset_Tracking
                         (SystemName, Model, Manufacturer, AssetType,
                          IPAddress, PurchaseDate, Notes, EmployeeID)
                     VALUES
-                        (@SystemNam, @Model, @Manufacturer, @AssetType,
+                        (@SystemName, @Model, @Manufacturer, @AssetType,
                          @IPAddress, @PurchaseDate, @Notes, @EmployeeID);
 
                     SELECT CAST (SCOPE_IDENTITY() AS INT);";
