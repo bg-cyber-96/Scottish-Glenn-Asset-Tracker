@@ -16,7 +16,7 @@ namespace Scottish_Glen_Asset_Tracking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new ScottishGlenForm());
         }
     }
 }
