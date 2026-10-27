@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.pnlHeader = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.lblTitle2 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pnlNavigation = new System.Windows.Forms.Panel();
-            this.btnAssets = new System.Windows.Forms.Button();
-            this.btnEmployees = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
+            this.btnEmployees = new System.Windows.Forms.Button();
+            this.btnAssets = new System.Windows.Forms.Button();
             this.pnlMainContent = new System.Windows.Forms.Panel();
             this.pnlHeader.SuspendLayout();
             this.pnlNavigation.SuspendLayout();
@@ -52,17 +52,6 @@
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(34, 9);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(220, 46);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "ScottishGlen";
-            // 
             // lblTitle2
             // 
             this.lblTitle2.AutoSize = true;
@@ -73,6 +62,17 @@
             this.lblTitle2.Size = new System.Drawing.Size(177, 23);
             this.lblTitle2.TabIndex = 1;
             this.lblTitle2.Text = "Asset Tracking System";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(34, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(215, 45);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "ScottishGlen";
             // 
             // pnlNavigation
             // 
@@ -86,21 +86,21 @@
             this.pnlNavigation.Size = new System.Drawing.Size(200, 360);
             this.pnlNavigation.TabIndex = 1;
             // 
-            // btnAssets
+            // btnDepartments
             // 
-            this.btnAssets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(120)))), ((int)(((byte)(184)))));
-            this.btnAssets.FlatAppearance.BorderSize = 0;
-            this.btnAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAssets.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAssets.ForeColor = System.Drawing.Color.White;
-            this.btnAssets.Location = new System.Drawing.Point(12, 65);
-            this.btnAssets.Name = "btnAssets";
-            this.btnAssets.Size = new System.Drawing.Size(170, 45);
-            this.btnAssets.TabIndex = 0;
-            this.btnAssets.Text = "Assets";
-            this.btnAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAssets.UseVisualStyleBackColor = false;
-            this.btnAssets.Click += new System.EventHandler(this.btnAssets_Click);
+            this.btnDepartments.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDepartments.FlatAppearance.BorderSize = 0;
+            this.btnDepartments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDepartments.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDepartments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(59)))), ((int)(((byte)(83)))));
+            this.btnDepartments.Location = new System.Drawing.Point(12, 205);
+            this.btnDepartments.Name = "btnDepartments";
+            this.btnDepartments.Size = new System.Drawing.Size(170, 45);
+            this.btnDepartments.TabIndex = 2;
+            this.btnDepartments.Text = "Departments";
+            this.btnDepartments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDepartments.UseVisualStyleBackColor = false;
+            this.btnDepartments.Click += new System.EventHandler(this.btnDepartments_Click);
             // 
             // btnEmployees
             // 
@@ -118,20 +118,21 @@
             this.btnEmployees.UseVisualStyleBackColor = false;
             this.btnEmployees.Click += new System.EventHandler(this.btnEmployees_click);
             // 
-            // btnDepartments
+            // btnAssets
             // 
-            this.btnDepartments.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDepartments.FlatAppearance.BorderSize = 0;
-            this.btnDepartments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDepartments.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDepartments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(59)))), ((int)(((byte)(83)))));
-            this.btnDepartments.Location = new System.Drawing.Point(12, 205);
-            this.btnDepartments.Name = "btnDepartments";
-            this.btnDepartments.Size = new System.Drawing.Size(170, 45);
-            this.btnDepartments.TabIndex = 2;
-            this.btnDepartments.Text = "Departments";
-            this.btnDepartments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDepartments.UseVisualStyleBackColor = false;
+            this.btnAssets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(120)))), ((int)(((byte)(184)))));
+            this.btnAssets.FlatAppearance.BorderSize = 0;
+            this.btnAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAssets.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAssets.ForeColor = System.Drawing.Color.White;
+            this.btnAssets.Location = new System.Drawing.Point(12, 65);
+            this.btnAssets.Name = "btnAssets";
+            this.btnAssets.Size = new System.Drawing.Size(170, 45);
+            this.btnAssets.TabIndex = 0;
+            this.btnAssets.Text = "Assets";
+            this.btnAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAssets.UseVisualStyleBackColor = false;
+            this.btnAssets.Click += new System.EventHandler(this.btnAssets_Click);
             // 
             // pnlMainContent
             // 
