@@ -60,6 +60,10 @@ namespace Scottish_Glen_Asset_Tracking
             ShowView(new EmployeesView());
         }
 
+        private void btnDepartments_Click(object sender, EventArgs e)
+        {
+            ShowView(new DepartmentsView());
+        }
     }
   
 }
