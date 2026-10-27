@@ -56,6 +56,12 @@
     <Compile Include="AssetsView.Designer.cs">
       <DependentUpon>AssetsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DepartmentsView.Designer.cs">
+      <DependentUpon>DepartmentsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeesView.cs">
       <SubType>UserControl</SubType>
@@ -74,6 +80,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AssetsView.resx">
       <DependentUpon>AssetsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentsView.resx">
+      <DependentUpon>DepartmentsView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EmployeesView.resx">
       <DependentUpon>EmployeesView.cs</DependentUpon>
